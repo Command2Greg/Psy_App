@@ -22,6 +22,6 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <p>Главная страница</p>
+    <p>Главная Cтраница</p>
   )
 }
