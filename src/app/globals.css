@@ -2,3 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/*START: MAIN PAGE STYLE*/
+
+.main-logo{
+  /* @apply fixed top-[50%] left-[50%] */
+}
+
+/*END: MAIN PAGE STYLE*/
