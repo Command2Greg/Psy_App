@@ -1,11 +1,19 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/*START: MAIN PAGE STYLE*/
+/*START: REGISTRATION PAGE STYLE*/
 
-.main-logo{
-  /* @apply fixed top-[50%] left-[50%] */
+.main__logo-image {
+  @apply w-full h-[70%] bg-cover bg-no-repeat z-0 flex justify-center items-start;
 }
 
-/*END: MAIN PAGE STYLE*/
+.registration__component-block {
+  @apply flex flex-col justify-between max-w-[500px] w-auto h-[50%];
+}
+
+.google-logIn__button {
+  @apply z-10 h-[20%] w-[100%] m-2 
+}
+
+/*END: REGISTRATION PAGE STYLE*/
