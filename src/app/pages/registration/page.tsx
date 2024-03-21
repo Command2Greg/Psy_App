@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import CustomButton from "../components/CustomButton";
-import useFirebaseAuth from "../PersonalHooks/useFirebaseAuth";
+import CustomButton from "../../components/CustomButton";
+import { getAuthUtils } from "../../PersonalHooks/useFirebaseAuth";
 
-const page = () => {
-  const {signInWithGoogle} = useFirebaseAuth()
+export default function page() {
+  const { signInWithGoogle } = getAuthUtils();
 
   return (
     <div className="flex flex-col justify-between items-center w-screen h-screen">
-      <div className="main__logo-image ">
+      <div className="w-full h-[70%] bg-cover bg-no-repeat z-0 flex justify-center items-start ">
         <Image
           src="/mainLogo.png"
           alt="Logo"
@@ -19,8 +19,8 @@ const page = () => {
           priority
         />
       </div>
-      <div className="registration__component-block">
-        <div className="google-logIn__button">
+      <div className="flex flex-col justify-between max-w-[500px] w-auto h-[50%]">
+        <div className="z-10 h-[20%] w-[100%] m-2 ">
           <CustomButton
             title={"Continue with Google"}
             containerStyles={
@@ -34,6 +34,4 @@ const page = () => {
       </div>
     </div>
   );
-};
-
-export default page;
+}
