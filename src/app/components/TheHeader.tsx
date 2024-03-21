@@ -8,6 +8,12 @@ export const navItems = [
 
 export function TheHeader() {
   return (
-    <Navigation navLinks={navItems} />
+    <div>
+   
+      <Navigation navLinks={navItems} />
+      
+    </div>
+    
+    
   )
 }
