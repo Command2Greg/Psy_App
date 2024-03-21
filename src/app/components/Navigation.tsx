@@ -17,8 +17,8 @@ export function Navigation({ navLinks }: {
               key={link.label}
               href={link.href}
             >
-              <button class="text-slate-100 bg-gray-500 hover:bg-gray-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
-              <div>
+              <button class="rounded-full text-center text-slate-100 bg-gray-500 hover:bg-slate-300 active:bg-slate-100 focus:outline-none focus:ring focus:ring-slate-500 hover:text-gray-500 ...">
+              <div className="flex  mx-3">
               {link.label}
               </div>
               </button>
