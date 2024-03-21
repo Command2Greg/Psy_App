@@ -1,13 +1,14 @@
 'use client'
 import Image from 'next/image'
 import like from '../../../public/like.svg'
+import redLike from '../../../public/redLike.svg'
 import { updateDbAnswerLikes } from '../dataBase/databaseServices';
 import { Answer } from "../store/types";
 import { useState } from 'react';
 
 export default function AddLikeBtn({ answer }: { answer: Answer }) {
     const [likes, setLikes] = useState(answer.likes.length);
-
+    const [liked, setLiked] = useState(false)
     const addLike = (id: string) => {
         const newSlug = 'newSlug1';
         const index = answer.likes.findIndex((item: string) => item === newSlug);
@@ -22,8 +23,11 @@ export default function AddLikeBtn({ answer }: { answer: Answer }) {
         }
     }
     return (
-        <button onClick={() => addLike(answer.id)}>
-            <Image src={like} alt='like'/>
+        <button onClick={() => {
+            addLike(answer.id)
+            setLiked(!liked)
+        }}>
+            <Image src={liked ? redLike : like} alt='like' />
         </button>
     )
 };
