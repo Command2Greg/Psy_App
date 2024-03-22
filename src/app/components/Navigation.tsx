@@ -6,7 +6,7 @@ export function Navigation({ navLinks }: {
 }) {
 
   return (
-    <header className="flex mb-10 ">
+    <div className="flex mb-10 ">
       <div className="flex grid-cols-2">
 
           {navLinks.map(link => (
@@ -29,6 +29,6 @@ export function Navigation({ navLinks }: {
 
 
       
-    </header>
+    </div>
   )
 }
