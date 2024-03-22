@@ -5,7 +5,9 @@ import {
   getDoc,
   DocumentSnapshot,
   updateDoc,
+  setDoc,
 } from "firebase/firestore";
+import { User } from '../store/types';
 // import { Answer } from '../store/types';
 
 export const getDBQuestion = async (slug: string) => {
@@ -38,5 +40,28 @@ export const updateDbAnswerLikes = async (answer: Answer, id: string) => {
     }
   } catch (error) {
     console.error('Error updating document:', error);
+  }
+};
+
+export const addDbUser = async (userData: User) => {
+  try {
+    const collection = doc(db, 'users', `${userData.id}`);
+    const document: DocumentSnapshot<DocumentData> = await getDoc(collection);
+    const docData = document.data();
+    if (!docData) {
+      setDoc(collection, {
+        articles: userData.articles,
+        desc: userData.desc,
+        favourite: userData.favourite,
+        mail: userData.mail,
+        name: userData.name,
+        photo: userData.photo,
+        role: userData.role,
+        slug: userData.slug,
+        video: userData.video,
+      });
+    }
+  } catch (error) {
+    console.error('Error add user to firestore:', error);
   }
 };

@@ -18,3 +18,16 @@ export type AppDataState = {
 export type StoreState = {
     appData: AppDataState,
 }
+
+export type User = {
+    id: string,
+    articles: string[],
+    desc: string,
+    favourite: string,
+    mail: string,
+    name: string,
+    photo: string,
+    role: string,
+    slug: string,
+    video: string[]
+}
