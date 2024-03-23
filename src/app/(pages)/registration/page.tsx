@@ -1,11 +1,7 @@
-// import Image from "@/next/image";
-import useFirebaseAuth from "@/app/PersonalHooks/useFirebaseAuth";
-import Image from "../../../../node_modules/next/image";
+import Image from "next/image";
 import CustomButton from "../../components/CustomButton";
 
-
 export default function page() {
-  const { signInWithGoogle } = useFirebaseAuth();
 
   return (
     <div className="flex flex-col justify-between items-center w-screen h-screen">
@@ -26,7 +22,6 @@ export default function page() {
             containerStyles={
               "text-black xl:text-xl sm:text-xs lg:text-sm w-full h-full flex justify-center items-center border-2 border-gray-500 flex justify-center text-center  rounded-md hover:bg-gray-400 transition-colors duration-300 ease-in-out"
             }
-            handleClick={signInWithGoogle}
             btnType={"button"}
             iconBefore={"/google.logo.png"}
           />
@@ -35,3 +30,4 @@ export default function page() {
     </div>
   );
 }
+

@@ -1,10 +1,11 @@
-import { CustomButtonProps } from "@types";
+'use client';
 import Image from "next/image";
+import { signInWithGoogle } from "@/app/PersonalHooks/useFirebaseAuth";
+import { CustomButtonProps } from "../types/index";
 
 export default function CustomButton({
   title,
   containerStyles,
-  handleClick,
   btnType,
   iconBefore,
 }: CustomButtonProps) {
@@ -13,7 +14,7 @@ export default function CustomButton({
       disabled={false}
       type={btnType || "button"}
       className={`custom-btn ${containerStyles}`}
-      onClick={handleClick}
+      onClick={signInWithGoogle}
     >
       {iconBefore && (
         <Image
