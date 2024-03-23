@@ -2,8 +2,7 @@ import { Navigation } from "./Navigation"
 import Image from 'next/image'
 
 export const navItems = [
-  //{ label: 'psyhologists', href: '/psyhologists' },
-  { label: 'questions', href: '/questions' },
+  { label: 'questions', href: '/questions/1' },
   { label: 'login', href: '/' },
 ]
 
@@ -19,9 +18,6 @@ export function TheHeader() {
         <Image src="/siteName.webp" width={350} height={90} alt="Picture of the author"/> 
       </div>
       
-    </header>
-    
-    
-    
+    </header> 
   )
 }
