@@ -1,16 +1,14 @@
-import { db } from '../../firebase';
 import {
   DocumentData,
-  doc,
   getDoc,
   DocumentSnapshot,
   updateDoc,
-} from "firebase/firestore";
-// import { Answer } from '../store/types';
+  DocumentReference,
+} from 'firebase/firestore';
+import { Answer } from '../store/types';
 
-export const getDBQuestion = async (slug: string) => {
+export const getDBQuestion = async (collection: DocumentReference<DocumentData, DocumentData>) => {
   try {
-    const collection = doc(db, 'questions', slug);
     const document: DocumentSnapshot<DocumentData> = await getDoc(collection);
     const docData = document.data();
     return docData;
@@ -20,14 +18,15 @@ export const getDBQuestion = async (slug: string) => {
   }
 };
 
-export const updateDbAnswerLikes = async (answer: Answer, id: string) => {
+export const updateDbAnswerLikes = async (
+  collection: DocumentReference<DocumentData, DocumentData>,
+  answer: Answer,
+  id: string
+) => {
   try {
-    //TODO добавить поиск документа по слагу
-    const collection = doc(db, 'questions', '1');
-    const document: DocumentSnapshot<DocumentData> = await getDoc(collection);
-    const docData = document.data();
-    // const {collection, docData}: { collection: DocumentReference<DocumentData, DocumentData>, docData: Question  } = await getDBQuestion()!;
-    if (docData) { //находим нужный answer из БД и заменяем его на полученный
+    const docData = await getDBQuestion(collection);
+    if (docData) {
+      //находим нужный answer из БД и заменяем его на полученный
       const updatedAnswers = [...docData.answers];
       const updatedAnswerIndex = docData.answers.findIndex((answer: Answer) => answer.id === id);
 

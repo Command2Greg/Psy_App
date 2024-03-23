@@ -1,11 +1,30 @@
+import { redirect } from 'next/navigation';
 
+import { db } from '@/app/dataBase/firebase';
+import { collection, doc, getDocs } from "firebase/firestore";
 import { getDBQuestion } from '@/app/dataBase/databaseServices';
 import { Question } from '@/app/store/types';
 import AddLikeBtn from '@/app/components/AddLikeBtn';
 
-export default async function Question() {
-  //TODO добавить получение слага
-  let question = await getDBQuestion('1') as Question;
+// это код для создания ssg в серверных компонентах
+export const dynamicParams = false;
+export const generateStaticParams = async () => {
+  const questionsRef = collection(db, 'questions');
+  const querySnapshot = await getDocs(questionsRef);
+  const slugs = querySnapshot.docs.map(doc => ({ slug: doc.id }));
+  return slugs;
+}
+
+export default async function Question(params: { params: { slug?: string } }) {
+  let slug = '';
+  if (params.params && typeof params.params.slug === 'string') {
+    slug = params.params.slug;
+  }
+  if (!slug) {
+    redirect('/error');
+  }
+
+  let question = await getDBQuestion(doc(db, 'questions', slug)) as Question;
   const sortedAnswers = [...question.answers];
   sortedAnswers.sort((a, b) => {
     return b.likes.length - a.likes.length;
