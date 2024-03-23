@@ -45,8 +45,7 @@ export default async function Question(params: { params: { slug?: string } }) {
               <p className="font-thin">{answer.text}</p>
               <div className="flex items-center mt-2">
                 <div className='flex-col items-center justify-center w-3'>
-                  <AddLikeBtn answer={answer} />
-                  <p className='text-[13px] -mt-2'>{answer.likes.length}</p>
+                  <AddLikeBtn answer={answer} slug={slug} />
                 </div>
               </div>
             </section>))}
