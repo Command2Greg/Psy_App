@@ -1,28 +1,42 @@
-import { auth } from "@src/firebase";
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { auth } from "@/firebase";
+import { useState, useEffect } from "react";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "/firebase";
+import { User } from "/firebase";
 
-export interface AuthUtils {
-  signInWithGoogle: () => Promise<void>;
-  handleSignOut: () => Promise<void>;
+interface AuthState {
+  user: User | null;
 }
 
-export const getAuthUtils = (): AuthUtils => {
-  const signInWithGoogle = async (): Promise<void> => {
+const useFirebaseAuth = (): { signInWithGoogle: () => void; handleSignOut: () => void } => {
+  const [authState, setAuthState] = useState<AuthState>({ user: null });
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setAuthState({ user });
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const signInWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider).then((result) => {
+        console.log(result);
+      });
     } catch (error) {
       console.error("Error signing in with Google:", error);
     }
   };
 
-  const handleSignOut = async (): Promise<void> => {
+  const handleSignOut = async () => {
     try {
       await signOut(auth);
     } catch (error) {
       console.error("Error signing out:", error);
     }
   };
-
-  return { signInWithGoogle, handleSignOut };
+  return { ...authState, signInWithGoogle, handleSignOut };
 };
+
+export default useFirebaseAuth;

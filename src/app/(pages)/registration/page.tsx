@@ -1,11 +1,11 @@
-"use client";
-
-import Image from "next/image";
+// import Image from "@/next/image";
+import useFirebaseAuth from "@/app/PersonalHooks/useFirebaseAuth";
+import Image from "../../../../node_modules/next/image";
 import CustomButton from "../../components/CustomButton";
-import { getAuthUtils } from "../../PersonalHooks/useFirebaseAuth";
+
 
 export default function page() {
-  const { signInWithGoogle } = getAuthUtils();
+  const { signInWithGoogle } = useFirebaseAuth();
 
   return (
     <div className="flex flex-col justify-between items-center w-screen h-screen">
