@@ -14,6 +14,7 @@ export default function AddLikeBtn({ answer, slug }: { answer: Answer, slug: str
     const index = updatedAnswer.likes.findIndex((item: string) => item === userName);
     if (index !== -1) {
       updatedAnswer.likes.splice(index, 1);
+
     } else {
       updatedAnswer.likes.push(userName);
     }
