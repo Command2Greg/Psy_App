@@ -1,6 +1,6 @@
 'use client';
 import Image from "next/image";
-import { signInWithGoogle } from "@/app/PersonalHooks/useFirebaseAuth";
+import { getAuthState, signInWithGoogle } from "@/app/PersonalHooks/useFirebaseAuth";
 import { CustomButtonProps } from "../types/index";
 
 export default function CustomButton({
@@ -9,6 +9,12 @@ export default function CustomButton({
   btnType,
   iconBefore,
 }: CustomButtonProps) {
+
+  // const handleSignIn = async () => {
+  //   await signInWithGoogle();
+  //   const authState = getAuthState();
+  //   console.log(authState.user); // Пример обработки состояния аутентификации
+  // }
   return (
     <button
       disabled={false}

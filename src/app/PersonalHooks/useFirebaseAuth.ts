@@ -1,28 +1,8 @@
-'use client';
-import { auth } from '@/firebase';
-import { useState, useEffect } from 'react';
-import { GoogleAuthProvider, User, signInWithPopup, signOut } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { auth } from '../dataBase/firebase';
 
-interface AuthState {
-  user: User | null;
-}
-
-export const getAuthState = (): AuthState => {
-  const [authState, setAuthState] = useState<AuthState>({ user: null });
-  console.log(
-    auth.onAuthStateChanged((user) => {
-      return { user };
-    })
-  );
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setAuthState({ user });
-    });
-
-    return () => unsubscribe();
-  }, []);
-  console.log(authState);
-  return authState;
+export const getCurrentUser = () => {
+  return auth.currentUser;
 };
 
 export const signInWithGoogle = async () => {

@@ -15,7 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='overflow-hidden'>
+      <head>
+        <meta name="robots" content="noindex,nofollow" />
+      </head>
+      <body>
         <Providers>
           <TheHeader />
           <main className="main">
