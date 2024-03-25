@@ -33,14 +33,13 @@ export type Question = {
 };
 
 export type User = {
-  id: string,
-  articles: string[],
-  desc: string,
-  favourite: string,
+  slug: string,
   mail: string,
   name: string,
-  photo: string,
-  role: string,
-  slug: string,
-  video: string[]
-};
+  photo?: string,
+  role?: "user" | "psy" | "admin",
+  favourite?: string,
+  desc?: string,
+  video?: string[],
+  articles?: string[]
+}

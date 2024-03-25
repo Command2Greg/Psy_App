@@ -6,7 +6,8 @@ import {
   DocumentReference,
   setDoc,
 } from "firebase/firestore";
-// import { Answer } from '../store/types';
+import { User } from "../store/types";
+ import { Answer } from '../store/types';
 
 export const getDBQuestion = async (collection: DocumentReference<DocumentData, DocumentData>) => {
   try {
@@ -41,22 +42,34 @@ export const updateDbAnswerLikes = async (
   }
 };
 
-export const addDbUser = async (userData: User) => {
+export const getDBUser = async (collection: DocumentReference<DocumentData, DocumentData>) => {
   try {
-    const collection = doc(db, 'users', `${userData.id}`);
     const document: DocumentSnapshot<DocumentData> = await getDoc(collection);
     const docData = document.data();
+    return docData;
+  } catch (error) {
+    console.error('Error getting selected documents:', error);
+    return null;
+  }
+};
+
+export const addDbUser = async (
+  collection: DocumentReference<DocumentData, DocumentData>,
+  userData: User,
+) => {
+  try {
+    const docData = await getDBUser(collection);
     if (!docData) {
       setDoc(collection, {
-        articles: userData.articles,
-        desc: userData.desc,
-        favourite: userData.favourite,
+        slug: userData.slug,
         mail: userData.mail,
         name: userData.name,
-        photo: userData.photo,
-        role: userData.role,
-        slug: userData.slug,
-        video: userData.video,
+        photo: userData.photo ? userData.photo : "",
+        role: userData.role ? userData.role : "user",
+        favourite: userData.favourite ? userData.favourite : "",
+        desc: userData.desc ? userData.desc : "",
+        video: userData.video ? userData.video : [],
+        articles: userData.articles ? userData.articles : [],
       });
     }
   } catch (error) {
