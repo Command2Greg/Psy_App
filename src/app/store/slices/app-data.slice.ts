@@ -5,6 +5,16 @@ export const name = 'appData';
 
 const userInitialState: AppDataState = {
   psyhologists: [],
+  question: {
+    slug: '',
+    title: '',
+    answers: [],
+    comments: [],
+    video: [],
+    SEODesc: '',
+    SEOTitle: '',
+    canonical: '',
+  },
 };
 
 export const appDataSlice = createSlice({
@@ -14,7 +24,10 @@ export const appDataSlice = createSlice({
     getAllPsyhologists(state, action) {
       state.psyhologists = action.payload;
     },
+    getQuestion(state, action) {
+      state.question = action.payload;
+    },
   },
 });
 
-export const { getAllPsyhologists } = appDataSlice.actions;
+export const { getAllPsyhologists, getQuestion } = appDataSlice.actions;

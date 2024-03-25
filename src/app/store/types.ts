@@ -1,33 +1,46 @@
-
-// import {IAnswer, ICategory, IGrade, IProffesion, IQuestion, CheckedQuestionDragDrop} from "@/app/components/Types";
-
-
 export type AppDataState = {
-    // allProfessions: IProffesion[];
-    // profession: IProffesion | null;
-    // grades: IGrade[];
-    // allCategories: ICategory[];
-    // categories: ICategory[];
-    // questions: IQuestion[];
-    // answers: IAnswer[];
-    // currentIdQuestion: string;
-    // checkedQuestionDragDrop: CheckedQuestionDragDrop;
-    psyhologists: any[];
-}
+  psyhologists: any[];
+  question: Question;
+};
 
 export type StoreState = {
     appData: AppDataState,
-}
+};
+
+export type Answer = {
+  id: string;
+  title: string;
+  text: string;
+  likes: string[];
+};
+
+export type Comment = {
+  content: string;
+  date: Date;
+  likes: string[];
+  slug: string;
+};
+
+export type Question = {
+  slug: string;
+  title: string;
+  answers: Answer[];
+  comments: Comment[];
+  video: string[];
+  SEODesc: string;
+  SEOTitle: string;
+  canonical: string;
+};
 
 export type User = {
-    id: string,
-    articles: string[],
-    desc: string,
-    favourite: string,
-    mail: string,
-    name: string,
-    photo: string,
-    role: string,
-    slug: string,
-    video: string[]
-}
+  id: string,
+  articles: string[],
+  desc: string,
+  favourite: string,
+  mail: string,
+  name: string,
+  photo: string,
+  role: string,
+  slug: string,
+  video: string[]
+};
