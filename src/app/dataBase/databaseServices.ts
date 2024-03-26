@@ -4,8 +4,10 @@ import {
   DocumentSnapshot,
   updateDoc,
   DocumentReference,
-} from 'firebase/firestore';
-import { Answer } from '../store/types';
+  setDoc,
+} from "firebase/firestore";
+import { User } from "../store/types";
+ import { Answer } from '../store/types';
 
 export const getDBQuestion = async (collection: DocumentReference<DocumentData, DocumentData>) => {
   try {
@@ -37,5 +39,40 @@ export const updateDbAnswerLikes = async (
     }
   } catch (error) {
     console.error('Error updating document:', error);
+  }
+};
+
+export const getDBUser = async (collection: DocumentReference<DocumentData, DocumentData>) => {
+  try {
+    const document: DocumentSnapshot<DocumentData> = await getDoc(collection);
+    const docData = document.data();
+    return docData;
+  } catch (error) {
+    console.error('Error getting selected documents:', error);
+    return null;
+  }
+};
+
+export const addDbUser = async (
+  collection: DocumentReference<DocumentData, DocumentData>,
+  userData: User,
+) => {
+  try {
+    const docData = await getDBUser(collection);
+    if (!docData) {
+      setDoc(collection, {
+        slug: userData.slug,
+        mail: userData.mail,
+        name: userData.name,
+        photo: userData.photo ? userData.photo : "",
+        role: userData.role ? userData.role : "user",
+        favourite: userData.favourite ? userData.favourite : "",
+        desc: userData.desc ? userData.desc : "",
+        video: userData.video ? userData.video : [],
+        articles: userData.articles ? userData.articles : [],
+      });
+    }
+  } catch (error) {
+    console.error('Error add user to firestore:', error);
   }
 };
