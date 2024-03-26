@@ -5,6 +5,7 @@ import { collection, doc, getDocs } from "firebase/firestore";
 import { getDBQuestion } from '@/app/dataBase/databaseServices';
 import { Question } from '@/app/store/types';
 import AddLikeBtn from '@/app/components/AddLikeBtn';
+import YoutubeAsideList from '@/app/components/YoutubeAsideList';
 
 // это код для создания ssg в серверных компонентах
 export const dynamicParams = false;
@@ -33,7 +34,7 @@ export default async function Question(params: { params: { slug?: string } }) {
 
   return (
     <div className="flex justify-center pb-6">
-      <div />
+      <YoutubeAsideList />
       <article className='flex-col max-w-screen-sm shadow-[0_15px_10px_3px_rgba(0,0,0,0.3)] rounded-xl p-2'>
         <h2 className="text-center bg-yellow-400 rounded-xl m-3  font-medium py-2 text-gray-600" >
           {question.title}
