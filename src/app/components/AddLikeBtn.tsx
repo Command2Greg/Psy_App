@@ -44,7 +44,7 @@ export default function AddLikeBtn({ answer, slug }: { answer: Answer, slug: str
   return (
     <>
       <button onClick={() => { addLike(answer.id) }}>
-        <Image src={isLiked ? redLike : like} width={48} height={53} alt='like' />
+        <Image src={isLiked ? redLike : like} width={14} height={10} className='-mt-4' alt='like' />
       </button>
       <p className='text-[13px] -mt-2'>{updatedAnswer.likes.length}</p>
     </>
