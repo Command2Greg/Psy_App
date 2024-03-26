@@ -1,6 +1,6 @@
 'use client';
 import Image from "next/image";
-import { getAuthState, signInWithGoogle } from "@/app/PersonalHooks/useFirebaseAuth";
+import { signInWithGoogle } from "@/app/PersonalHooks/useFirebaseAuth";
 import { CustomButtonProps } from "../types/index";
 
 export default function CustomButton({
