@@ -4,7 +4,7 @@ export type AppDataState = {
 };
 
 export type StoreState = {
-  appData: AppDataState;
+    appData: AppDataState,
 };
 
 export type Answer = {
@@ -31,3 +31,15 @@ export type Question = {
   SEOTitle: string;
   canonical: string;
 };
+
+export type User = {
+  slug: string,
+  mail: string,
+  name: string,
+  photo?: string,
+  role?: "user" | "psy" | "admin",
+  favourite?: string,
+  desc?: string,
+  video?: string[],
+  articles?: string[]
+}
