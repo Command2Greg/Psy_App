@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
+import { collection, doc, getDocs } from "firebase/firestore";
 
 import { db } from '@/app/dataBase/firebase';
-import { collection, doc, getDocs } from "firebase/firestore";
 import { getDBQuestion } from '@/app/dataBase/databaseServices';
 import { Question } from '@/app/store/types';
 import AddLikeBtn from '@/app/components/AddLikeBtn';
@@ -52,6 +53,7 @@ export default async function Question(params: { params: { slug?: string } }) {
               <hr className='mt-4' />
             </section>))}
       </article>
+      <Image src="/imageMan.webp" width={500} height={500} alt="Picture of the author"/>
     </div>
   )
 }
