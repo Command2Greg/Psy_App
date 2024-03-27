@@ -15,6 +15,16 @@ export default function ModalYoutubeVideo({
     setIsOpen: (value: boolean) => void,
 }) {
 
+    const autoplayVideo = () => {
+        const playBtnsArr = Array.from(document.getElementsByClassName("lty-playbtn"));
+        if (playBtnsArr.length > 0) {
+            const lastPlayBtn = playBtnsArr[playBtnsArr.length - 1];
+            if (lastPlayBtn instanceof HTMLElement) {
+                lastPlayBtn.click();
+            }
+        }
+    };
+
     return (
         <Modal
             open={isOpen}
@@ -22,7 +32,10 @@ export default function ModalYoutubeVideo({
             showCloseIcon={false}
             center
         >
-            <div className="w-[760px]">
+            <div
+                className="w-[760px]"
+                onLoad={() => autoplayVideo()}
+            >
                 <LiteYouTubeEmbed
                     id={currentVideo}
                     title={`Psyhology video ${currentVideo}`}
