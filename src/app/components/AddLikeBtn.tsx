@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import like from '../../../public/like.svg'
@@ -15,19 +15,26 @@ export default function AddLikeBtn({ answer, slug }: { answer: Answer, slug: str
   const [isLiked, setIsLiked] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    const currentUser = localStorage.getItem('key');
+    if (currentUser && updatedAnswer.likes.includes(currentUser)) {
+      setIsLiked(true);
+    } else {
+      setIsLiked(false);
+    }
+  }, [updatedAnswer])
+
   const addLike = async (id: string) => {
     const currentUser = getCurrentUser();
-
     if (currentUser && currentUser.email) {
       const userEmail = currentUser.email;
+      localStorage.setItem('key', userEmail)
       const index = updatedAnswer.likes.findIndex((item: string) => item === userEmail);
 
       if (index !== -1) {
         updatedAnswer.likes.splice(index, 1);
-        setIsLiked(false);
       } else {
         updatedAnswer.likes.push(userEmail);
-        setIsLiked(true);
       }
 
       await updateDbAnswerLikes((doc(db, 'questions', slug)), updatedAnswer, id);
@@ -44,7 +51,7 @@ export default function AddLikeBtn({ answer, slug }: { answer: Answer, slug: str
   return (
     <>
       <button onClick={() => { addLike(answer.id) }}>
-        <Image src={isLiked ? redLike : like} width={14} height={10} className='-mt-4' alt='like' />
+        <Image src={isLiked ? redLike : like} width={14} height={13} className='-mt-4' alt='like' />
       </button>
       <p className='text-[13px] -mt-2'>{updatedAnswer.likes.length}</p>
     </>
