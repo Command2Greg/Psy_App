@@ -34,9 +34,9 @@ export default async function Question(params: { params: { slug?: string } }) {
   question = { ...question, answers: sortedAnswers };
 
   return (
-    <div className="flex justify-center pb-6">
+    <div className="flex justify-center pb-6 mt-6 ml-6">
       <YoutubeAsideList />
-      <article className='flex-col max-w-screen-sm shadow-[0_11px_9px_6px_rgba(0,0,0,0.3)] rounded-xl p-2 mt-5'>
+      <article className='flex-col max-w-screen-sm shadow-[0_11px_9px_6px_rgba(0,0,0,0.3)] rounded-xl p-2 mx-8'>
         <h2 className="text-center bg-yellow-400 rounded-xl m-3 font-medium py-2 text-gray-600">
           {question.title}
         </h2>

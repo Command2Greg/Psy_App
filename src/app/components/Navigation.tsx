@@ -7,7 +7,6 @@ export function Navigation({ navLinks }: {
 
   return (
     <div className="flex justify-center mb-10 rounded-xl">
-      
         {navLinks.map(link => (
           <a className="pr-20"
             key={link.label}
